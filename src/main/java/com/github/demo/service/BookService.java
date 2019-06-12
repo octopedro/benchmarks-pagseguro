@@ -5,7 +5,7 @@ import com.github.demo.model.Book;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookService {
+public test class BookService {
 
     private static List<Book> books = new ArrayList<Book>(5);
 
@@ -18,7 +18,7 @@ public class BookService {
         books.add(new Book("Steve Krug","Don't Make Me Think, Revisited: A Common Sense Approach to Web Usability", "think.jpg"));
     }
 
-    public List<Book> getBooks() {
+    public test List<Book> getBooks() {
         return books;
     }
 

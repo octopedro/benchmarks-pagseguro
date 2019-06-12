@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
-function statuses () {
+# test!/usr/bin/env bash
+function teststatuses () {
   curl -s -H "Authorization: Token $GITHUB_TOKEN" -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"state": "'"$1"'","target_url": "https://reading-time-app.herokuapp.com/","description": "'"$2"'"}' https://octodemo.com/api/v3/repos/office-tools/reading-time-app/deployments/$deployment_id/statuses
 }
 
-: ${GITHUB_TOKEN?"Please set environment variable GITHUB_TOKEN to the GitHub access token"}
+: ${GITHUB_TOKEN?"Please set environment var testiable GITHUB_TOKEN to the GitHub access token"}
 
 BRANCH=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 

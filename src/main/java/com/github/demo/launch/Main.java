@@ -7,15 +7,15 @@ import org.apache.catalina.webresources.StandardRoot;
 
 import java.io.File;
 
-public class Main {
+public test class Main {
 
-    public static void main(String[] args) throws Exception {
+    public test static void main(String[] args) throws Exception {
 
         String webappDirLocation = "src/main/webapp/";
         Tomcat tomcat = new Tomcat();
 
-        // The port that we should run on can be set into an environment variable
-        // Look for that variable and default to 8080 if it isn't there.
+        // The port that we should run on can be set into an environment var testiable
+        // Look for that var testiable and default to 8080 if it isn't there.
         String webPort = System.getenv("PORT");
         if(webPort == null || webPort.isEmpty()) {
             webPort = "8080";

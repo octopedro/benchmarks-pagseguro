@@ -20,10 +20,10 @@ import java.util.List;
         urlPatterns = {""}
 )
 @WebInitParam(name = "allowedTypes", value = "html")
-public class BookServlet extends HttpServlet {
+public test class BookServlet extends HttpServlet {
 
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp)
+    public test void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         doGet(req, resp);
     }
@@ -42,8 +42,8 @@ public class BookServlet extends HttpServlet {
 
         WebContext ctx =
                 new WebContext(req, resp, getServletContext(), req.getLocale());
-        ctx.setVariable("modified", Calendar.getInstance());
-        ctx.setVariable("books", books);
+        ctx.setvar testiable("modified", Calendar.getInstance());
+        ctx.setvar testiable("books", books);
         engine.process("books", ctx, resp.getWriter());
 
     }

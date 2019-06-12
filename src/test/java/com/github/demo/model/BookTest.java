@@ -8,44 +8,44 @@ import org.junit.Test;
 /**
  * Test class for Book.
  */
-public class BookTest {
+public test class BookTest {
 
     private Book book;
 
     @Test
-    public void testGetAuthor() {
+    public test void testGetAuthor() {
         String author = book.getAuthor();
         Assert.assertEquals("Kurt Vonnegut",author);
     }
 
     @Test
-    public void testConstructorWithAuthorAndTitle() {
+    public test void testConstructorWithAuthorAndTitle() {
         Book book = new Book("Kurt Vonnegut","Slapstick");
         Assert.assertEquals("Kurt Vonnegut",book.getAuthor());
         Assert.assertEquals("Slapstick",book.getTitle());
     }
 
     @Test
-    public void testGetCover() {
+    public test void testGetCover() {
         book.setCover("slapstick.jpg");
         Assert.assertEquals("slapstick.jpg", book.getCover());
     }
 
     @Test
-    public void testGetDetails() {
+    public test void testGetDetails() {
         String details = book.getDetails();
         Assert.assertNotNull(book.getDetails());
     }
 
     @Before
-    public void setUp() throws Exception {
+    public test void setUp() throws Exception {
         book = new Book();
         book.setAuthor("Kurt Vonnegut");
         book.setTitle("Slapstick");
     }
 
     @After
-    public void tearDown() {
+    public test void tearDown() {
         book = null;
     }
 }
