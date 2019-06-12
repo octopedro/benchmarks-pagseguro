@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title th:text="#{books.title}"></title>
+  <title th:text="# test{books.title}"></title>
   <meta charset="utf-8"></meta>
   <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
   <link rel="shortcut icon" href="images/favicon.ico" />
@@ -15,7 +15,7 @@
       border-radius: 0;
     }
     footer {
-      background-color: #f2f2f2; /* #f2f2f2 #ffffff */
+      background-color: # testf2f2f2; /* # testf2f2f2 # testffffff */
       padding: 25px;
     }
     .emoji {
@@ -33,23 +33,23 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="# testmyNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><img class="emoji" src="/images/invertocat.svg" th:alt="#{books.title}"/></a>
+      <a class="navbar-brand" href="# test"><img class="emoji" src="/images/invertocat.svg" th:alt="# test{books.title}"/></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Books</a></li>
-        <li class="active"><a href="#">Favorites</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="# test">Home</a></li>
+        <li><a href="# test">Books</a></li>
+        <li class="active"><a href="# test">Favorites</a></li>
+        <li><a href="# test">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+        <li><a href="# test"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+        <li><a href="# test"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
       </ul>
     </div>
   </div>
@@ -61,7 +61,7 @@
       <table class="table table-hover">
         <thead>
         <tr>
-          <th th:text="#{books.intro}" colspan="3"/>
+          <th th:text="# test{books.intro}" colspan="3"/>
         </tr>
         </thead>
         <tbody>
@@ -69,10 +69,10 @@
         <tr>
           <td class="col-sm-8 col-md-6">
             <div class="media">
-              <a class="thumbnail pull-left" href="#"> <img class="media-object" th:src="'/images/covers/' + ${book.cover}" style="width: 72px; height: 72px;" /></a>
+              <a class="thumbnail pull-left" href="# test"> <img class="media-object" th:src="'/images/covers/' + ${book.cover}" style="width: 72px; height: 72px;" /></a>
               <div class="media-body" th:inline="text">
-                <h4 class="media-heading"><a href="#">[[${book.title}]]</a></h4>
-                <h5 class="media-heading"> by <a href="#">[[${book.author}]]</a></h5>
+                <h4 class="media-heading"><a href="# test">[[${book.title}]]</a></h4>
+                <h5 class="media-heading"> by <a href="# test">[[${book.author}]]</a></h5>
                 <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
               </div>
             </div></td>

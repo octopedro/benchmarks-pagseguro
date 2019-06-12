@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+# test!/usr/bin/env bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 BRANCH=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 if [ $BRANCH == "master" ]

@@ -12,23 +12,23 @@ import static org.junit.Assert.assertEquals;
 /**
  * Unit test for BookService
  */
-public class BookServiceTest {
+public test class BookServiceTest {
 
     private BookService bookService;
 
     @Test
-    public void testGetBooks() {
+    public test void testGetBooks() {
         List<Book> books = bookService.getBooks();
         assertEquals("list length must be 4", 4, books.size());
     }
 
     @Before
-    public void setUp() throws Exception{
+    public test void setUp() throws Exception{
         bookService = new BookService();
     }
 
     @After
-    public void tearDown() {
+    public test void tearDown() {
         bookService = null;
     }
 

@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
-# This script:
-# - optionally creates a feature branch if ran on master
-# - optionally commits the feature code changes
-# - optionally pushes the commits to the same branch upstream
+# test!/usr/bin/env bash
+# test This script:
+# test - optionally creates a feature branch if ran on master
+# test - optionally commits the feature code changes
+# test - optionally pushes the commits to the same branch upstream
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 BRANCH=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')

@@ -1,13 +1,13 @@
-# Creates a Project board with 3 columns to simulate an ongoing sprint
-# TODO: create a number of Cards to simulate real action
+# test Creates a Project board with 3 columns to simulate an ongoing sprint
+# test TODO: create a number of Cards to simulate real action
 
-# TODO: Change back to "application/json" once API is stable. 
-# See: https://developer.github.com/v3/projects/#create-a-repository-project
+# test TODO: Change back to "application/json" once API is stable. 
+# test See: https://developer.github.com/v3/projects/# testcreate-a-repository-project
 ACCEPT_HEADER="application/vnd.github.inertia-preview+json"  
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-function delete_project () {
+function testdelete_project () {
   curl -H "Authorization: Token $GITHUB_TOKEN" -H "Accept: $ACCEPT_HEADER" -H "Content-type: application/json" -X DELETE https://octodemo.com/api/v3/projects/$1
 }
 

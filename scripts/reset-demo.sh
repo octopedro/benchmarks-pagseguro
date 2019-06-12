@@ -1,39 +1,39 @@
-# This script reset the demo for a reading-time-app (RT) project
-# Required environment variables
-# RT_PM_TOKEN for the PM actor
-# RT_UX_TOKEN for the UX actor
-# RT_DS_TOKEN for the Designer actor
-# RT_ORG organization that holds the reading-time repository
-# RT_REPO reading time repository name
+# test This script reset the demo for a reading-time-app (RT) project
+# test Required environment var testiables
+# test RT_PM_TOKEN for the PM actor
+# test RT_UX_TOKEN for the UX actor
+# test RT_DS_TOKEN for the Designer actor
+# test RT_ORG organization that holds the reading-time repository
+# test RT_REPO reading time repository name
 
-# It would be awesome if the bellow used like arrays and data structures, but then again this is bash :(
+# test It would be awesome if the bellow used like arrays and data structures, but then again this is bash :(
 
-#!/usr/bin/bash
+# test!/usr/bin/bash
 echo "Re-setting Demo"
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 DEFAULT_FEATURE_BRANCH="add-rating-feature"
 
-# Check if master branch is protected
+# test Check if master branch is protected
 BRANCHES_STATUS_CODE=$(curl -I -H "Authorization: Token $GITHUB_TOKEN" -H "Accept: application/json" https://octodemo.com/api/v3/repos/$RT_ORG/$RT_REPO/branches/master/protection -s -o /dev/null -w %{http_code})
 
 if [ $BRANCHES_STATUS_CODE -ne "404" ] ; then
 
     echo "Master is protected: disabling protection"
 
-    # Read required status currently activated on master branch
+    # test Read required status currently activated on master branch
     CONTEXTS=$(curl -H "Authorization: Token $GITHUB_TOKEN" -H "Accept: application/json" https://octodemo.com/api/v3/repos/$RT_ORG/$RT_REPO/branches/master/protection/required_status_checks/contexts)
 
-    # Remove new lines from $CONTEXTS
+    # test Remove new lines from $CONTEXTS
     CONTEXTS=$(echo $CONTEXTS|tr -d '\n')
 
-    # Disabling protected branches otherwise force push fails (when available in Enterprise)
+    # test Disabling protected branches otherwise force push fails (when available in Enterprise)
     curl -H "Authorization: Token $GITHUB_TOKEN" -H "Accept: application/json" -H "Content-type: application/json" -X DELETE https://octodemo.com/api/v3/repos/$RT_ORG/$RT_REPO/branches/master/protection
 
 else
   echo "Master is not protected"
 fi
 
-# Force push HEAD to baseline
+# test Force push HEAD to baseline
 echo "Reverting master to baseline tag"
 git fetch --tags
 git checkout master
@@ -45,13 +45,13 @@ if [ "$BRANCHES_STATUS_CODE" -ne 404 ] ; then
 
     echo "Re-enabling protected branches as before: $CONTEXTS"
 
-    # Get the new JSON based on the protected.json template and run the re-enable API
+    # test Get the new JSON based on the protected.json template and run the re-enable API
     sed -e "s|CONTEXTS_PLACEHOLDER|$CONTEXTS|g" scripts/protected.json | curl -H "Authorization: Token $GITHUB_TOKEN" -H "Accept: application/json" -H "Content-type: application/json" -X PUT https://octodemo.com/api/v3/repos/$RT_ORG/$RT_REPO/branches/master/protection -d @-
 fi
 
 
 
-function close_issue () {
+function testclose_issue () {
   curl -H "Authorization: Token $GITHUB_TOKEN" -H "Accept: application/json" -H "Content-type: application/json" -X PATCH -d '{"state": "closed"}' https://octodemo.com/api/v3/repos/$RT_ORG/$RT_REPO/issues/$1
 }
 

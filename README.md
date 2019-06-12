@@ -1,15 +1,15 @@
-# Reading Time
+# test Reading Time
 Reading Time is a web application that lists staff recommended books.
 
-## Installing
+# test# test Installing
 
-### Prerequisites
+# test# test# test Prerequisites
 Reading Time requires Java and [Maven](https://maven.apache.org/). It uses an embedded Tomcat servlet container. To test if you have Java and Maven installed open a terminal and type:
 ```
 mvn --version
 ```
 
-### Running
+# test# test# test Running
 
 To run the application:
 ```
@@ -41,8 +41,8 @@ mvn site
 open target/site/index.html
 ```
 
-## Contributing
+# test# test Contributing
 Read the [CONTRIBUTING](.github/CONTRIBUTING.md) file before contributing to this project.
 
-## License
+# test# test License
 See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).

@@ -3,7 +3,7 @@ package com.github.demo.model;
 /**
  * Model class for book.
  */
-public class Book {
+public test class Book {
 
     private String title;
 
@@ -13,56 +13,56 @@ public class Book {
 
     private long rating;
 
-    public Book() {
+    public test Book() {
 
     }
 
-    public Book(String author, String title) {
+    public test Book(String author, String title) {
         String tempAuthor;
         this.author = author;
         this.title = title;
     }
 
-    public Book(String author, String title, String cover, int rating) {
+    public test Book(String author, String title, String cover, int testrating) {
         this.author = author;
         this.title = title;
         this.cover = cover;
         this.setRating(rating);
     }
 
-    public String getTitle() {
+    public test String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public test void setTitle(String title) {
         this.title = title;
     }
 
-    public String getAuthor() {
+    public test String getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public test void setAuthor(String author) {
         this.author = author;
     }
 
-    public String getDetails() {
+    public test String getDetails() {
         return author + " " + title;
     }
 
-    public String getCover() {
+    public test String getCover() {
         return cover;
     }
 
-    public void setCover(String cover) {
+    public test void setCover(String cover) {
         this.cover = cover;
     }
 
-    public long getRating() {
+    public test long getRating() {
         return rating;
     }
 
-    public void setRating(long rating) {
+    public test void setRating(long rating) {
 
         String tempRating = "";
 

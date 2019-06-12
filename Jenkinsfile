@@ -1,16 +1,16 @@
-#!groovy
+# test!groovy
 import groovy.json.JsonOutput
 import groovy.json.JsonSlurper
 
 /*
-Environment variables: These environment variables should be set in Jenkins in: `https://github-demo.ci.cloudbees.com/job/<org name>/configure`:
+Environment var testiables: These environment var testiables should be set in Jenkins in: `https://github-demo.ci.cloudbees.com/job/<org name>/configure`:
 
 For deployment purposes:
  - HEROKU_PREVIEW=<your heroku preview app>
  - HEROKU_PREPRODUCTION=<your heroku pre-production app>
  - HEROKU_PRODUCTION=<your heroku production app>
 
-To control which stages you want, please add an environment variable if you want to remove a particular step of the build:
+To control which stages you want, please add an environment var testiable if you want to remove a particular step of the build:
  - DEMO_DISABLE_SONAR=true
  - DEMO_DISABLE_LINT=true
  - DEMO_DISABLE_PREVIEW=true
@@ -68,7 +68,7 @@ podTemplate(
   })
 
 def printOptions () {
-    echo "====Environment variable configurations===="
+    echo "====Environment var testiable configurations===="
     echo sh(script: 'env|sort', returnStdout: true)
 }
 
@@ -85,7 +85,7 @@ def sonarPreview() {
     stage('Code Quality - SonarQube Preview') {
         prNo = (env.BRANCH_NAME=~/^PR-(\d+)$/)[0][1]
         mvn "org.jacoco:jacoco-maven-plugin:prepare-agent install -Dmaven.test.failure.ignore=true -Pcoverage-per-test"
-        withCredentials([[$class: 'StringBinding', credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN']]) {
+        withCredentials([[$class: 'StringBinding', credentialsId: 'GITHUB_TOKEN', var testiable: 'GITHUB_TOKEN']]) {
             githubToken=env.GITHUB_TOKEN
             repoSlug=getRepoSlug()
             withSonarQubeEnv('SonarQube Octodemoapps') {
@@ -166,7 +166,7 @@ def allCodeQualityTests() {
 
 def lintTest() {
 
-    if (env.DEMO_DISABLE_LINT == "true") {
+    if (env.DEMO_DISABLE_Lint test== "true") {
         return
     }
 
@@ -354,7 +354,7 @@ def mvn(args) {
 }
 
 def herokuDeploy (herokuApp) {
-    withCredentials([[$class: 'StringBinding', credentialsId: 'HEROKU_API_KEY', variable: 'HEROKU_API_KEY']]) {
+    withCredentials([[$class: 'StringBinding', credentialsId: 'HEROKU_API_KEY', var testiable: 'HEROKU_API_KEY']]) {
         mvn "heroku:deploy -DskipTests=true -Dmaven.javadoc.skip=true -B -V -D heroku.appName=${herokuApp}"
     }
 }
@@ -373,7 +373,7 @@ def getBranch() {
 }
 
 def createDeployment(ref, environment, description) {
-    withCredentials([[$class: 'StringBinding', credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN']]) {
+    withCredentials([[$class: 'StringBinding', credentialsId: 'GITHUB_TOKEN', var testiable: 'GITHUB_TOKEN']]) {
         def payload = JsonOutput.toJson(["ref": "${ref}", "description": "${description}", "environment": "${environment}", "required_contexts": []])
         def apiUrl = "https://octodemo.com/api/v3/repos/${getRepoSlug()}/deployments"
         def response = sh(returnStdout: true, script: "curl -s -H \"Authorization: Token ${env.GITHUB_TOKEN}\" -H \"Accept: application/json\" -H \"Content-type: application/json\" -X POST -d '${payload}' ${apiUrl}").trim()
@@ -384,7 +384,7 @@ def createDeployment(ref, environment, description) {
 }
 
 void createRelease(tagName, createdAt) {
-    withCredentials([[$class: 'StringBinding', credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN']]) {
+    withCredentials([[$class: 'StringBinding', credentialsId: 'GITHUB_TOKEN', var testiable: 'GITHUB_TOKEN']]) {
         def body = "**Created at:** ${createdAt}\n**Deployment job:** [${env.BUILD_NUMBER}](${env.BUILD_URL})\n**Environment:** [${env.HEROKU_PRODUCTION}](https://dashboard.heroku.com/apps/${env.HEROKU_PRODUCTION})"
         def payload = JsonOutput.toJson(["tag_name": "v${tagName}", "name": "${env.HEROKU_PRODUCTION} - v${tagName}", "body": "${body}"])
         def apiUrl = "https://octodemo.com/api/v3/repos/${getRepoSlug()}/releases"
@@ -393,7 +393,7 @@ void createRelease(tagName, createdAt) {
 }
 
 void setDeploymentStatus(deploymentId, state, targetUrl, description) {
-    withCredentials([[$class: 'StringBinding', credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN']]) {
+    withCredentials([[$class: 'StringBinding', credentialsId: 'GITHUB_TOKEN', var testiable: 'GITHUB_TOKEN']]) {
         def payload = JsonOutput.toJson(["state": "${state}", "target_url": "${targetUrl}", "description": "${description}"])
         def apiUrl = "https://octodemo.com/api/v3/repos/${getRepoSlug()}/deployments/${deploymentId}/statuses"
         def response = sh(returnStdout: true, script: "curl -s -H \"Authorization: Token ${env.GITHUB_TOKEN}\" -H \"Accept: application/json\" -H \"Content-type: application/json\" -X POST -d '${payload}' ${apiUrl}").trim()
@@ -412,7 +412,7 @@ void setBuildStatus(context, message, state) {
 }
 
 def getCurrentHerokuReleaseVersion(app) {
-    withCredentials([[$class: 'StringBinding', credentialsId: 'HEROKU_API_KEY', variable: 'HEROKU_API_KEY']]) {
+    withCredentials([[$class: 'StringBinding', credentialsId: 'HEROKU_API_KEY', var testiable: 'HEROKU_API_KEY']]) {
         def apiUrl = "https://api.heroku.com/apps/${app}/dynos"
         def response = sh(returnStdout: true, script: "curl -s  -H \"Authorization: Bearer ${env.HEROKU_API_KEY}\" -H \"Accept: application/vnd.heroku+json; version=3\" -X GET ${apiUrl}").trim()
         def jsonSlurper = new JsonSlurper()
@@ -422,7 +422,7 @@ def getCurrentHerokuReleaseVersion(app) {
 }
 
 def getCurrentHerokuReleaseDate(app, version) {
-    withCredentials([[$class: 'StringBinding', credentialsId: 'HEROKU_API_KEY', variable: 'HEROKU_API_KEY']]) {
+    withCredentials([[$class: 'StringBinding', credentialsId: 'HEROKU_API_KEY', var testiable: 'HEROKU_API_KEY']]) {
         def apiUrl = "https://api.heroku.com/apps/${app}/releases/${version}"
         def response = sh(returnStdout: true, script: "curl -s  -H \"Authorization: Bearer ${env.HEROKU_API_KEY}\" -H \"Accept: application/vnd.heroku+json; version=3\" -X GET ${apiUrl}").trim()
         def jsonSlurper = new JsonSlurper()
